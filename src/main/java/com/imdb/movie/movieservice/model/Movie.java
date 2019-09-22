@@ -1,17 +1,21 @@
 package com.imdb.movie.movieservice.model;
 
+import javax.persistence.*;
 
-import lombok.*;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
+@Entity
 public class Movie {
-    private String id;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "mId")
+    private Long id;
+
+    @Column(name = "title")
     private String name;
-    private String description;
+
+    @Column(name = "year")
+    private String releaseData;
+
     private String director;
 
 }

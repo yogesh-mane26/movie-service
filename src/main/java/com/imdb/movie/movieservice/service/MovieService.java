@@ -1,42 +1,19 @@
 package com.imdb.movie.movieservice.service;
 
 import com.imdb.movie.movieservice.model.Movie;
-import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class MovieService {
+public interface MovieService {
 
-    private List<Movie> movies= new ArrayList<>(Arrays.asList(
-            new Movie("101", "Fun Movie", "Fun Movie Descriptions","Yogesh"),
-            new Movie("102","Func","Descriptions","Yogesh Mane")));
+    List<Movie> getAllMovie();
 
-    public List<Movie> getAllMovie() {
-        return movies;
-    }
+    Optional<Movie> getMovieById(Long id);
 
-    public Movie getMovieById(String id) {
-        return movies.stream().filter(t -> t.getId().equals(id)).findFirst().get();
-    }
+    public void addMovie(Movie movie);
 
-    public void addMovie(Movie movie) {
-        movies.add(movie);
-    }
+    public void updateMovie(Movie movie);
 
-    public void updateMovie(Movie movie, String id) {
-        for (int i = 0; i < movies.size(); i++) {
-            Movie t = movies.get(i);
-            if (t.getId().equals(id)) {
-                movies.set(i, movie);
-            }
-        }
-    }
-
-    public void deleteMovie(String id) {
-        movies.removeIf(t->t.getId().equals(id));
-    }
+    public void deleteMovie(Long id);
 }

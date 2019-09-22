@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class MovieController {
@@ -20,7 +21,7 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/movie/{id}")
-    public Movie getMovieById(@PathVariable("id") String  id){
+    public Optional<Movie> getMovieById(@PathVariable("id") Long id){
         return movieService.getMovieById(id);
     }
 
@@ -30,13 +31,13 @@ public class MovieController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/movie/{id}")
-    public void updateMovie(@RequestBody Movie movie, @PathVariable("id") String id){
-         movieService.updateMovie(movie,id);
+    @RequestMapping(method = RequestMethod.PUT, value = "/movie")
+    public void updateMovie(@RequestBody Movie movie){
+         movieService.updateMovie(movie);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/movie/{id}")
-    public void deleteMovie(@PathVariable("id") String id) {
+    public void deleteMovie(@PathVariable("id") Long id) {
         movieService.deleteMovie(id);
     }
 }
