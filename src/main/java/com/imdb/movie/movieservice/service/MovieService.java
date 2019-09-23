@@ -9,7 +9,7 @@ public interface MovieService {
 
     List<Movie> getAllMovie();
 
-    Optional<Movie> getMovieById(Long id);
+    Movie getMovieById(Long id);
 
     public void addMovie(Movie movie);
 

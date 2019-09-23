@@ -23,14 +23,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<Movie> getAllMovie() {
-        List<Movie> movies=new ArrayList<>();
-        movieRepository.findAll().forEach(movies::add);
-        return movies;
+        return movieRepository.findAll();
     }
 
     @Override
-    public Optional<Movie> getMovieById(Long id) {
-        return movieRepository.findById(id);
+    public Movie getMovieById(Long id) {
+        return movieRepository.findByMid(id);
     }
 
     @Override

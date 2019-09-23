@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class MovieController {
 
+    private final MovieService movieService;
+
     @Autowired
-    private MovieService movieService;
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @RequestMapping("/movie")
     public List<Movie> getMovieList() {
@@ -21,7 +24,7 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/movie/{id}")
-    public Optional<Movie> getMovieById(@PathVariable("id") Long id){
+    public Movie getMovieById(@PathVariable("id") Long id){
         return movieService.getMovieById(id);
     }
 
